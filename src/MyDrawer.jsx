@@ -4,6 +4,7 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import Reviews from './screens/Reviews';
+import History from './screens/History';
 
 // Create Drawer Navigator
 const Drawer = createDrawerNavigator();
@@ -96,6 +97,7 @@ const MyDrawer = () => {
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
       <Drawer.Screen name="Reviews" component={Reviews} />
+      <Drawer.Screen name="History" component={History} />
     </Drawer.Navigator>
   );
 };
