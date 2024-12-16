@@ -15,3 +15,4 @@ const API_ENDPOINTS = {
 export default API_ENDPOINTS;
 
 export  const CHANGE_AVAILABILITY= "change-availability";
+export const LOG_OUT="user-logout";

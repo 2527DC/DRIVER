@@ -5,6 +5,8 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import Reviews from './screens/Reviews';
 import History from './screens/History';
+import axiosClient from './Store/API_CLIENT';
+import { LOG_OUT } from './constant/Constants';
 
 // Create Drawer Navigator
 const Drawer = createDrawerNavigator();
@@ -20,18 +22,31 @@ const CustomDrawerContent = (props) => {
         { 
           text: "Logout", 
           style: "destructive",
-          onPress: () => {
+          onPress: async () => {
             // Perform logout actions here (e.g., clearing tokens, navigating to login)   
-            props.navigation.reset({
-              index: 0,
-              routes: [{ name: 'Login' }], // Replace 'Login' with your actual login screen name
-            });
+  
+            try {
+              const response = await axiosClient.post(LOG_OUT, { user_id: 177 });
+  
+              // Log only the relevant data from the response
+              console.log('Logout response data:', response.data);
+  
+              if (response.data.success === 1) {
+                props.navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }], // Replace 'Login' with your actual login screen name
+                });
+              }
+            } catch (error) {
+              console.error('Error during logout:', error);
+              Alert.alert("Error", "Something went wrong. Please try again later.");
+            }
           }
         }
       ]
     );
   };
-
+  
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <DrawerContentScrollView {...props}>
