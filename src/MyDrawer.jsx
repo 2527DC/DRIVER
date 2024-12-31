@@ -2,9 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import HomeScreen from './screens/HomeScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import Reviews from './screens/Reviews';
-import History from './screens/History';
+
 import axiosClient from './Store/API_CLIENT';
 import { LOG_OUT } from './constant/Constants';
 
@@ -110,9 +108,8 @@ const MyDrawer = () => {
       }}
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="Reviews" component={Reviews} />
-      <Drawer.Screen name="History" component={History} />
+    
+      
     </Drawer.Navigator>
   );
 };
