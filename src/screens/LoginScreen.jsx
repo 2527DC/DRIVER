@@ -18,11 +18,11 @@ const Login = ({ navigation }) => {
   return (
     <SafeAreaProvider>
       <View className="flex-1 justify-center items-center p-4">
-        <Text className="text-2xl mb-5">Login</Text>
+        <Text className="text-2xl mb-5">Enter your DL Number</Text>
 
         <View className="w-2/3">
           <TextInput
-            className="w-full p-3 border border-gray-400 rounded mb-5"
+            className="w-full p-3 border border-gray-400 rounded-lg mb-5"
             placeholder="Enter your DL Number"
             value={email}
             onChangeText={setEmail}
