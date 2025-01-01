@@ -1,13 +1,14 @@
 import React from 'react';
-import GoogleMapScreen from './GoogleMapScreen';
-import MapScreen from './MapScreen';
+import { View } from 'react-native';
+import TripCard from '../components/TripCard';
 
 
 const HomeScreen = () => {
   
   return (
-    <GoogleMapScreen></GoogleMapScreen>
-    // <MapScreen></MapScreen>
+
+<TripCard/>
+
   );
 };
 

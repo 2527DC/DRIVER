@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Platform, PermissionsAndroid, Alert, BackHandler } from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
-// import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions'; // Import react-native-permissions
+
 
 // Create Context
 const AppContext = createContext();
+
 
 // Custom hook to use the context
 export const useAppContext = () => {
@@ -13,6 +13,23 @@ export const useAppContext = () => {
 
 // Create a provider component
 export const AppProvider = ({ children }) => {
+
+  //  state to store the officess 
+  const [Offices, setOffices] = useState([
+    {
+      office: "STONEX_PUNE",
+      address: "Pune, Maharashtra, India",
+    },
+    {
+      office: "STONEX",
+      address: " dodda byelakere bengaluru",
+    },
+  ]);
+  
+
+
+
+
   // State to store user data
   const [userData, setUserData] = useState({
     api_token: '',
@@ -89,6 +106,7 @@ useEffect(() => {
         setAllUserData,
         getUserData,
         clearUserData,
+        Offices
       }}
     >
       {children}
