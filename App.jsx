@@ -10,11 +10,16 @@ import { AppProvider } from './src/Store/AppContext';
 import messaging from '@react-native-firebase/messaging';
 import firebase from '@react-native-firebase/app';
 import database from '@react-native-firebase/database';
+import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [isAppInitialized, setIsAppInitialized] = useState(false);
+
+  useEffect(()=>{
+ SplashScreen.hide();
+  },[])
 
   // Check Firebase Initialization
   const checkAppInitialized = () => {
