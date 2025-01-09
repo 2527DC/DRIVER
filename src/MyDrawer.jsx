@@ -9,6 +9,7 @@ import { LOG_OUT } from './constant/Constants';
 import TripHistory from './screens/TripHistory';
 import SwitchOffce from './screens/SwitchOffce';
 import OfficeNavigation from './screens/OfficeNavigation';
+import Practice from './screens/Practice';
 
 // Create Drawer Navigator
 const Drawer = createDrawerNavigator();
@@ -139,6 +140,15 @@ const MyDrawer = () => {
        <Drawer.Screen
         name="Office Navigation"
         component={OfficeNavigation}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <MIcons name="sign-direction" size={size} color={color} />
+          ),
+        }}
+      />
+       <Drawer.Screen
+        name="Practice"
+        component={Practice}
         options={{
           drawerIcon: ({ color, size }) => (
             <MIcons name="sign-direction" size={size} color={color} />

@@ -8,7 +8,6 @@ import MyDrawer from './src/MyDrawer';
 import { AppProvider } from './src/Store/AppContext';
 import messaging from '@react-native-firebase/messaging';
 import firebase from '@react-native-firebase/app';
-import database from '@react-native-firebase/database';
 import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
@@ -103,21 +102,6 @@ const App = () => {
       });
   };
 
-  // Write Data to Firebase Realtime Database
-  const writeData = async () => {
-    try {
-      const dbRef = database().ref('/users/123');
-      const data = {
-        name: 'John Doe',
-        age: 30,
-      };
-      await dbRef.set(data);
-      console.log('Data written successfully:', data);
-    } catch (error) {
-      console.error('Error writing data:', error);
-    }
-  };
-
   useEffect(() => {
     checkAppInitialized();
 
@@ -126,8 +110,7 @@ const App = () => {
       getFcmToken();
       const unsubscribeForeground = listenForForegroundMessages();
       handleBackgroundMessages();
-      writeData();
-
+    
       // Cleanup
       return () => {
         unsubscribeForeground();
