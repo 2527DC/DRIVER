@@ -1,8 +1,11 @@
-import { View, Text, TouchableOpacity, Animated, Modal, Button } from 'react-native'
+import { View, Text, TouchableOpacity, Animated, Modal, Button, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import Filter from 'react-native-vector-icons/MaterialCommunityIcons'; // Import icon library
 import { Calendar } from 'react-native-calendars'; // Import Calendar component
+import Svg, { Line } from 'react-native-svg';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import HistoryCard from '../components/HistoryCard';
 
 const TripHistory = () => {
   const [calendarVisible, setCalendarVisible] = useState(false);
@@ -47,10 +50,24 @@ const TripHistory = () => {
     });
   }, [navigation]);
 
-  return (
-    <View className='flex-1'>
-      <Text>Upcoming Trip</Text>
+  const tripData = [
+    { tripId: '2930', date: '1/3/2024', source: 'Source A', destination: 'Destination A', employees: 3, logoutTime: '21:30' },
+    { tripId: '2931', date: '2/3/2024', source: 'Source B', destination: 'Destination B', employees: 5, logoutTime: '22:00' },
+    { tripId: '2932', date: '3/3/2024', source: 'Source C', destination: 'Destination C', employees: 4, logoutTime: '20:45' }
+    ,{ tripId: '2930', date: '1/3/2024', source: 'Source A', destination: 'Destination A', employees: 3, logoutTime: '21:30' },
+    { tripId: '2931', date: '2/3/2024', source: 'Source B', destination: 'Destination B', employees: 5, logoutTime: '22:00' },
+    { tripId: '2932', date: '3/3/2024', source: 'Source C', destination: 'Destination C', employees: 4, logoutTime: '20:45' }
+ ,   { tripId: '2930', date: '1/3/2024', source: 'Source A', destination: 'Destination A', employees: 3, logoutTime: '21:30' },
+ { tripId: '2931', date: '2/3/2024', source: 'Source B', destination: 'Destination B', employees: 5, logoutTime: '22:00' },
+ { tripId: '2932', date: '3/3/2024', source: 'Source C', destination: 'Destination C', employees: 4, logoutTime: '20:45' }
 
+  ];
+
+  return (
+<ScrollView>
+
+
+<View className='flex-1'>
       {/* The Animated View for the calendar */}
       <Animated.View
         style={{
@@ -109,8 +126,21 @@ const TripHistory = () => {
           </View>
         </Modal>
       </Animated.View>
-    </View>
+
+
+{/* <View className=' bg-gray-300 p-1'> */}
+{tripData.map((trip, index) => (
+        <HistoryCard key={index} {...trip} />
+      ))}
+{/* </View> */}
+
+</View>
+</ScrollView>
+
+
   );
 }
 
 export default TripHistory;
+
+

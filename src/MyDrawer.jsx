@@ -90,7 +90,7 @@ const CustomDrawerContent = (props) => {
 const MyDrawer = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="Home"
+      initialRouteName="Upcomming Trip"
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: true,
@@ -110,7 +110,7 @@ const MyDrawer = () => {
       }}
     >
       <Drawer.Screen
-        name="Home"
+        name="Upcomming Trip"
         component={HomeScreen}
         options={{
           drawerIcon: ({ color, size }) => (

@@ -4,7 +4,6 @@ import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/screens/LoginScreen';
-import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import MyDrawer from './src/MyDrawer';
 import { AppProvider } from './src/Store/AppContext';
 import messaging from '@react-native-firebase/messaging';
@@ -18,7 +17,7 @@ const App = () => {
   const [isAppInitialized, setIsAppInitialized] = useState(false);
 
   useEffect(()=>{
- SplashScreen.hide();
+   SplashScreen.hide();
   },[])
 
   // Check Firebase Initialization
@@ -141,8 +140,8 @@ const App = () => {
       <AppProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+            <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
+          
             <Stack.Screen
               name="Main"
               component={MyDrawer}
