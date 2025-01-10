@@ -1,3 +1,4 @@
+
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -5,9 +6,8 @@ import Svg, { Line } from 'react-native-svg';
 import EmployeeCard from './EmpolyeeCard';
 import { Linking, Platform, Alert } from 'react-native';
 
-// Static source and destination coordinates
-const source = { latitude: 12.9716, longitude: 77.5946 }; // Example source coordinates (Bangalore)
-const destination = { latitude: 28.7041, longitude: 77.1025 }; // Example destination coordinates (Delhi)
+const source = { latitude:13.227810, longitude: 77.241645}; // Example source coordinates (Bangalore)
+const destination = { latitude: 12.976664, longitude:77.571256}; // Example destination coordinates (Delhi)
 
 // The TripCard component
 const TripCard = ({ site, date, startLocation, endLocation, employees, pickupPoints, id }) => {
@@ -23,39 +23,44 @@ const TripCard = ({ site, date, startLocation, endLocation, employees, pickupPoi
     console.log("Pickup Points:", pickupPoints);
 }, [pickupPoints]); 
 
-const handleTrackPress = () => {
-  if (!pickupPoints || pickupPoints.length === 0) {
-      Alert.alert("Error", "No pickup points available.");
-      return;
+const openMaps = () => {
+  if (Platform.OS === 'ios') {
+  
+    pickupPoints.unshift({ address: 'Dabaspete Bus Stop, Karnataka, India' });
+
+    pickupPoints.push({ address: 'MS Palya Bengaluru, Karnataka, India' });
+    let url = 'https://maps.apple.com/?dirflg=d';
+    
+    pickupPoints.forEach((stop, index) => {
+      const stopAddress = stop.address;  // Use the address for building the URL
+      if (index === 0) {
+        url += `&saddr=${encodeURIComponent(stopAddress)}`; // Source address
+      } else {
+        url += `&daddr=${encodeURIComponent(stopAddress)}`; // Destination address
+      }
+    });
+  
+    Linking.openURL(url).catch((err) => {
+      Alert.alert('Error', 'Unable to open Apple Maps');
+      console.error(err);
+    });
   }
-
-  // Generate the waypoints string dynamically
-  const waypointsString = pickupPoints
-      .map(point => `${point.latitude},${point.longitude}`)
-      .join('|');
-
-  // Use the first and last points for source and destination
-  const source = pickupPoints[0];
-  const destination = pickupPoints[pickupPoints.length - 1];
-
-  // Construct URLs dynamically
-  const googleMapUrl = `https://www.google.com/maps/dir/?api=1&origin=${source.latitude},${source.longitude}&destination=${destination.latitude},${destination.longitude}&waypoints=${waypointsString}&travelmode=driving`;
-
-  const appleMapUrl = `http://maps.apple.com/?saddr=${source.latitude},${source.longitude}&daddr=${destination.latitude},${destination.longitude}&dirflg=d&waypoints=${waypointsString}`;
-
-  // Open the map URL in the respective app
-  const url = Platform.OS === 'ios' ? appleMapUrl : googleMapUrl;
-
-  Linking.canOpenURL(url)
-      .then((supported) => {
-          if (supported) {
-              Linking.openURL(url);
-          } else {
-              Alert.alert("Error", "Unable to open map application.");
-          }
-      })
-      .catch((err) => console.error(err));
+  
+   else if (Platform.OS === 'android') {
+    let url = `https://www.google.com/maps/dir/?api=1&origin=${source.latitude},${source.longitude}&destination=${destination.latitude},${destination.longitude}`;
+    if (pickupPoints.length > 0) {
+      const waypoints = pickupPoints
+        .map((stop) => `${stop.latitude},${stop.longitude}`)
+        .join('|');
+      url += `&waypoints=${waypoints}`;
+    }
+    Linking.openURL(url).catch((err) => {
+      Alert.alert('Error', 'Unable to open Google Maps');
+      console.error(err);
+    });
+  }
 };
+
 
   return (
     <>
@@ -137,7 +142,7 @@ const handleTrackPress = () => {
         <View className="p-2 ml-3 mr-4">
           <TouchableOpacity
             className="flex-row items-center bg-white p-2 rounded-lg justify-center"
-            onPress={handleTrackPress} // Attach the track handler
+            onPress={openMaps} // Attach the track handler
           >
             <Icon name="directions" size={30} color="blue" />
             <Text className="text-lg font-bold ml-2">Track</Text>
