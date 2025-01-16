@@ -13,7 +13,20 @@
           "package_name": "com.mlt"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "247664392683-nj6o3gjsc8dmrnhmdmv0r1i88f15o745.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mlt",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "247664392683-gg6srm0malua8od3jn5pmnrh88euidhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHtVc6mogUt-XnELtynSGfo-nYXyoz2TA"
@@ -21,26 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:247664392683:android:f6478e25b25691a17941ae",
-        "android_client_info": {
-          "package_name": "com.mlt.driver"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDHtVc6mogUt-XnELtynSGfo-nYXyoz2TA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247664392683-gg6srm0malua8od3jn5pmnrh88euidhq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247664392683-m3b1euud99enc9lfs1u7i5p6e4q4ms4q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.Rider"
+              }
+            }
+          ]
         }
       }
     },
@@ -51,7 +57,20 @@
           "package_name": "com.rider"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "247664392683-14n5kvmclc6uu7rlfkgr8329816tpm4f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rider",
+            "certificate_hash": "327bacfc1fa48acbaa2149704bce96d2b1420530"
+          }
+        },
+        {
+          "client_id": "247664392683-gg6srm0malua8od3jn5pmnrh88euidhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDHtVc6mogUt-XnELtynSGfo-nYXyoz2TA"
@@ -59,7 +78,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "247664392683-gg6srm0malua8od3jn5pmnrh88euidhq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "247664392683-m3b1euud99enc9lfs1u7i5p6e4q4ms4q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.Rider"
+              }
+            }
+          ]
         }
       }
     }

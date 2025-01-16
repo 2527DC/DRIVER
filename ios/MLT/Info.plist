@@ -53,14 +53,27 @@
   <string>Zocial.ttf</string>
   <string>Fontisto.ttf</string>
 </array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Your message explaining why you need location access.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We need access to your location for...</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>GPS data required </string>
-	<key>NSLocationUsageDescription</key>
-	<string>location permisssion</string>
+	
+<key>NSCameraUsageDescription</key>
+<string>We need access to your camera</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>We need access to your photo library</string>
+<key>NSUserTrackingUsageDescription</key>
+<string>We need to track your activity for analytics</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>We need access to your microphone to allow voice input during the IVR process.</string>
+
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need access to your location at all times</string>
+<key>NSAppleMusicUsageDescription</key>
+<string>We need access to your music</string>
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>We need your location for...</string>
+
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location for...</string>
+
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
