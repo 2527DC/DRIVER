@@ -31,52 +31,50 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need access to your music</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location for...</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need access to your location at all times</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location for...</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone to allow voice input during the IVR process.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photo library</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>We need to track your activity for analytics</string>
 	<key>UIAppFonts</key>
-<array>
-  <string>AntDesign.ttf</string>
-  <string>Entypo.ttf</string>
-  <string>EvilIcons.ttf</string>
-  <string>Feather.ttf</string>
-  <string>FontAwesome.ttf</string>
-  <string>FontAwesome5_Brands.ttf</string>
-  <string>FontAwesome5_Regular.ttf</string>
-  <string>FontAwesome5_Solid.ttf</string>
-  <string>FontAwesome6_Brands.ttf</string>
-  <string>FontAwesome6_Regular.ttf</string>
-  <string>FontAwesome6_Solid.ttf</string>
-  <string>Foundation.ttf</string>
-  <string>Ionicons.ttf</string>
-  <string>MaterialIcons.ttf</string>
-  <string>MaterialCommunityIcons.ttf</string>
-  <string>SimpleLineIcons.ttf</string>
-  <string>Octicons.ttf</string>
-  <string>Zocial.ttf</string>
-  <string>Fontisto.ttf</string>
-</array>
-	
-<key>NSCameraUsageDescription</key>
-<string>We need access to your camera</string>
-
-<key>NSPhotoLibraryUsageDescription</key>
-<string>We need access to your photo library</string>
-<key>NSUserTrackingUsageDescription</key>
-<string>We need to track your activity for analytics</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>We need access to your microphone to allow voice input during the IVR process.</string>
-
-<key>NSLocationAlwaysUsageDescription</key>
-<string>We need access to your location at all times</string>
-<key>NSAppleMusicUsageDescription</key>
-<string>We need access to your music</string>
-<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-<string>We need your location for...</string>
-
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>We need your location for...</string>
-
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
+		<string>location</string>
 		<string>remote-notification</string>
+		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
