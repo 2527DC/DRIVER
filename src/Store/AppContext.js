@@ -2,7 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import Geolocation from '@react-native-community/geolocation';
 
 import { requestMultiple, PERMISSIONS } from 'react-native-permissions';
-import { Alert, Linking } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
+import { updateLocationTask } from '../services/BackgroundLocationService';
 
 // Create Context
 const AppContext = createContext();
@@ -92,42 +93,56 @@ useEffect(() => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [hasPermissions, setHasPermissions] = useState(false); 
 
+
   const requestMultiplePermissions = async () => {
     try {
+      // Define the permissions to be requested
       const permissions = [
         PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION, 
         PERMISSIONS.ANDROID.RECORD_AUDIO, 
         PERMISSIONS.IOS.LOCATION_WHEN_IN_USE, 
-        PERMISSIONS.IOS.MICROPHONE, 
+        PERMISSIONS.IOS.MICROPHONE,
       ];
+  
+      // For Android, also request background location permission if it's Android 10 or higher
+      if (Platform.OS === 'android' && Platform.Version >= 29) {
+        permissions.push(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
 
+        
+      }else{
+        console.log(" an error accured when background ");
+        
+      }
+  
+      // Request the permissions
       const result = await requestMultiple(permissions);
-
+  
+      // Check if all permissions are granted
       const allPermissionsGranted = Object.values(result).every(
         (status) => status === 'granted'
       );
-
+  
       if (allPermissionsGranted) {
         console.log('All permissions granted');
         setHasPermissions(true); 
       } else {
         console.warn('Some permissions denied');
         setHasPermissions(false);
-
-        // Show the alert with the button linking to the settings
+  
+        // Show the alert with a button linking to the settings
         Alert.alert(
           "Permissions Required",
           "All permissions must be given to use this app.",
           [
             {
               text: "Go to Settings",
-              onPress: () => Linking.openSettings(), 
+              onPress: () => Linking.openSettings(),
             },
           ],
           { cancelable: false } // Prevents the user from dismissing the alert
         );
       }
-
+  
       return allPermissionsGranted;
     } catch (error) {
       console.error('Error requesting permissions:', error);
@@ -135,7 +150,7 @@ useEffect(() => {
       return false;
     }
   };
-    
+
   // Method to clear user data
   const clearUserData = () => {
     setUserData({

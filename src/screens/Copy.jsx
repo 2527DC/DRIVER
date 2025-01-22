@@ -160,3 +160,54 @@
 // };
 
 // export default MyDrawer;
+
+
+
+// ---------------
+
+
+
+  // Request Multiple Permissions (Location and Microphone)
+
+  // const checkLocationServices = async () => {
+
+  //    if (Platform.OS==='ios') {
+  //     DeviceInfo.getAvailableLocationProviders()
+  //     .then((providers) => {
+  //     console.log(providers);
+  
+  //       const isGpsOn = providers.locationServicesEnabled; // Check if location services (including GPS) are enabled
+  //       console.log(`GPS is ${isGpsOn ? 'ON' : 'OFF'}`);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error fetching location providers:', error);
+  //     });
+    
+      
+  //    } else{
+  //    DeviceInfo.getAvailableLocationProviders()
+  //   .then((providers) => {  
+  //     console.log('Location Providers:', providers);
+    
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error fetching location providers:', error);
+  //   });
+  //    }
+   
+  //    if (!gps) {
+  //     Alert.alert("Permission Denied", "Location permission is required to use this feature.");
+  //    }
+  
+  
+  
+  // };
+
+//   useEffect(() => {
+  
+//     // Call updateLocation every 2 seconds
+//     const intervalId = setInterval(updateLocation, 2000);
+
+//     // Clear interval when component unmounts
+//     return () => clearInterval(intervalId);
+// }, []);

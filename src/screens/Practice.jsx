@@ -1,111 +1,63 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import AppleMapWithStops from '../components/AppleMapWithStops'
-
-import { useEffect, useState } from 'react';
-import {  StyleSheet, PermissionsAndroid, Platform, Alert } from 'react-native';
-import Geolocation from '@react-native-community/geolocation';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import backgroundServer from 'react-native-background-actions';
 
 const Practice = () => {
-  return (
-   <AppleMapWithStops/>
-  )
-}
+  const sleep = (time) => new Promise((resolve) => setTimeout(() => resolve(), time));
 
-export default Practice
-
- export const LocationUpdater = () => {
-  const [currentLocation, setCurrentLocation] = useState(null);
-
-  // Request location permissions
-  const requestLocationPermission = async () => {
-    if (Platform.OS === 'android') {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        {
-          title: 'Location Permission',
-          message: 'This app needs access to your location to track it in real-time.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        }
-      );
-
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('You can access location');
-        return true;
-      } else {
-        console.log('Location permission denied');
-        Alert.alert('Permission Denied', 'Location permission is required.');
-        return false;
+  // Define the intensive task to run in the background
+  const veryIntensiveTask = async (taskDataArguments) => {
+    const { delay } = taskDataArguments;
+    await new Promise(async (resolve) => {
+      for (let i = 0; backgroundServer.isRunning(); i++) {
+        console.log(i);
+        await sleep(delay);
       }
-    }
-    return true; // iOS permissions are handled differently
+      resolve(); // Ensure the promise resolves when the loop ends
+    });
   };
 
-  // Start location updates every 3 seconds
-  const startLocationUpdates = async () => {
-    const hasPermission = await requestLocationPermission();
-    if (!hasPermission) return;
-
-    const watchId = Geolocation.watchPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setCurrentLocation({ latitude, longitude });
-        console.log(`Updated Location: ${latitude}, ${longitude}`);
-      },
-      (error) => {
-        console.error('Error fetching location:', error);
-      },
-      {
-        enableHighAccuracy: true,
-        distanceFilter: 0,
-        interval: 3000, // 3 seconds
-        fastestInterval: 3000, // 3 seconds
-      }
-    );
-
-    return watchId;
+  const options = {
+    taskName: 'Example',
+    taskTitle: 'ExampleTask title',
+    taskDesc: 'ExampleTask description',
+    taskIcon: {
+      name: 'ic_launcher',
+      type: 'mipmap',
+    },
+    color: '#ff00ff',
+    linkingURI: 'yourSchemeHere://chat/jane', // Deep Linking URI
+    parameters: {
+      delay: 1000, // Delay between each loop iteration
+    },
   };
 
-  useEffect(() => {
-    let watchId;
+  // Start background task
+  const startBackgroundTask = async () => {
+    await backgroundServer.start(veryIntensiveTask, options);
+    await backgroundServer.updateNotification({ taskDesc: 'New ExampleTask description' }); // Only Android
+  };
 
-    (async () => {
-      watchId = await startLocationUpdates();
-    })();
-
-    // Cleanup on unmount
-    return () => {
-      if (watchId !== undefined) {
-        Geolocation.clearWatch(watchId);
-      }
-      Geolocation.stopObserving();
-    };
-  }, );
+  // Stop background task
+  const stopBackgroundTask = async () => {
+    await backgroundServer.stop();
+  };
 
   return (
-    <View style={styles.container}>
-      {currentLocation ? (
-        <Text style={styles.locationText}>
-          Current Location: {currentLocation.latitude}, {currentLocation.longitude}
+    <View className="flex-1 justify-between items-center">
+      <TouchableOpacity className='p-1 m-1 bg-green-500' onPress={startBackgroundTask}>
+        <Text className='p-1 m-1'>
+          Start Background Task
         </Text>
-      ) : (
-        <Text style={styles.locationText}>Fetching location...</Text>
-      )}
+      </TouchableOpacity>
+
+      <TouchableOpacity className='p-1 m-1 bg-red-500' onPress={stopBackgroundTask}>
+        <Text className='p-1 m-1'>
+          Stop Background Task
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  locationText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
-
+export default Practice;
